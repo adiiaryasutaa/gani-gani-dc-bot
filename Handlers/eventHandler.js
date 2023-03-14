@@ -16,24 +16,24 @@ const loadEvents = (client) => {
                 if (event.once) {
                     client.rest.once(
                         event.name,
-                        (...args) => event.execute(...args, client)
+                        (...args) => event.execute(client, ...args)
                     )
                 } else {
                     client.rest.on(
                         event.name,
-                        (...args) => event.execute(...args, client)
+                        (...args) => event.execute(client, ...args)
                     )
                 }
             } else {
                 if (event.once) {
                     client.once(
                         event.name,
-                        (...args) => event.execute(...args, client)
+                        (...args) => event.execute(client, ...args)
                     )
                 } else {
                     client.on(
                         event.name,
-                        (...args) => event.execute(...args, client)
+                        (...args) => event.execute(client, ...args)
                     )
                 }
             }

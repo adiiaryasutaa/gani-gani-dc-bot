@@ -1,6 +1,7 @@
 require('dotenv').config()
 
-const { Client, GatewayIntentBits, Partials } = require('discord.js');
+const { Client, GatewayIntentBits, Partials, Collection } = require('discord.js');
+const { loadCommands } = require('./Handlers/commandHandler');
 const { loadEvents } = require('./Handlers/eventHandler');
 
 const client = new Client({
@@ -19,6 +20,7 @@ const client = new Client({
 })
 
 client.config = process.env
+client.commands = new Collection()
 
 client
     .login(client.config.token)
@@ -26,4 +28,5 @@ client
         console.log('Bot logged in')
 
         loadEvents(client)
+        loadCommands(client)
     })
